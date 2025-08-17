@@ -39,6 +39,7 @@ message CreateUserRequest {
   string username = 1;
   string email = 2;
   string password = 3;
+  string bio = 4;
 }
 
 message CreateUserResponse {
@@ -46,7 +47,8 @@ message CreateUserResponse {
 }
 
 message UpdateUserRequest {
-  User user = 1;
+  int64 id = 1; 
+  User user = 2;
 }
 
 message UpdateUserResponse {
