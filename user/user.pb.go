@@ -349,7 +349,9 @@ func (x *CreateUserResponse) GetUser() *User {
 type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	User          *User                  `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	Bio           string                 `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Username      string                 `protobuf:"bytes,4,opt,name=username,proto3" json:"username,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -391,11 +393,25 @@ func (x *UpdateUserRequest) GetId() int64 {
 	return 0
 }
 
-func (x *UpdateUserRequest) GetUser() *User {
+func (x *UpdateUserRequest) GetEmail() string {
 	if x != nil {
-		return x.User
+		return x.Email
 	}
-	return nil
+	return ""
+}
+
+func (x *UpdateUserRequest) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+func (x *UpdateUserRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
 }
 
 type UpdateUserResponse struct {
@@ -643,11 +659,12 @@ const file_user_user_proto_rawDesc = "" +
 	"\x03bio\x18\x04 \x01(\tR\x03bio\"4\n" +
 	"\x12CreateUserResponse\x12\x1e\n" +
 	"\x04user\x18\x01 \x01(\v2\n" +
-	".user.UserR\x04user\"C\n" +
+	".user.UserR\x04user\"g\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1e\n" +
-	"\x04user\x18\x02 \x01(\v2\n" +
-	".user.UserR\x04user\"4\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\x12\x10\n" +
+	"\x03bio\x18\x03 \x01(\tR\x03bio\x12\x1a\n" +
+	"\busername\x18\x04 \x01(\tR\busername\"4\n" +
 	"\x12UpdateUserResponse\x12\x1e\n" +
 	"\x04user\x18\x01 \x01(\v2\n" +
 	".user.UserR\x04user\"#\n" +
@@ -701,24 +718,23 @@ var file_user_user_proto_depIdxs = []int32{
 	11, // 1: user.User.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 2: user.GetUserResponse.user:type_name -> user.User
 	0,  // 3: user.CreateUserResponse.user:type_name -> user.User
-	0,  // 4: user.UpdateUserRequest.user:type_name -> user.User
-	0,  // 5: user.UpdateUserResponse.user:type_name -> user.User
-	0,  // 6: user.ListUsersResponse.users:type_name -> user.User
-	1,  // 7: user.UserService.GetUser:input_type -> user.GetUserRequest
-	3,  // 8: user.UserService.CreateUser:input_type -> user.CreateUserRequest
-	5,  // 9: user.UserService.UpdateUser:input_type -> user.UpdateUserRequest
-	7,  // 10: user.UserService.DeleteUser:input_type -> user.DeleteUserRequest
-	9,  // 11: user.UserService.ListUsers:input_type -> user.ListUsersRequest
-	2,  // 12: user.UserService.GetUser:output_type -> user.GetUserResponse
-	4,  // 13: user.UserService.CreateUser:output_type -> user.CreateUserResponse
-	6,  // 14: user.UserService.UpdateUser:output_type -> user.UpdateUserResponse
-	8,  // 15: user.UserService.DeleteUser:output_type -> user.DeleteUserResponse
-	10, // 16: user.UserService.ListUsers:output_type -> user.ListUsersResponse
-	12, // [12:17] is the sub-list for method output_type
-	7,  // [7:12] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	0,  // 4: user.UpdateUserResponse.user:type_name -> user.User
+	0,  // 5: user.ListUsersResponse.users:type_name -> user.User
+	1,  // 6: user.UserService.GetUser:input_type -> user.GetUserRequest
+	3,  // 7: user.UserService.CreateUser:input_type -> user.CreateUserRequest
+	5,  // 8: user.UserService.UpdateUser:input_type -> user.UpdateUserRequest
+	7,  // 9: user.UserService.DeleteUser:input_type -> user.DeleteUserRequest
+	9,  // 10: user.UserService.ListUsers:input_type -> user.ListUsersRequest
+	2,  // 11: user.UserService.GetUser:output_type -> user.GetUserResponse
+	4,  // 12: user.UserService.CreateUser:output_type -> user.CreateUserResponse
+	6,  // 13: user.UserService.UpdateUser:output_type -> user.UpdateUserResponse
+	8,  // 14: user.UserService.DeleteUser:output_type -> user.DeleteUserResponse
+	10, // 15: user.UserService.ListUsers:output_type -> user.ListUsersResponse
+	11, // [11:16] is the sub-list for method output_type
+	6,  // [6:11] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_user_user_proto_init() }

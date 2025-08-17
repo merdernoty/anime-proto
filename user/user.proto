@@ -48,7 +48,9 @@ message CreateUserResponse {
 
 message UpdateUserRequest {
   int64 id = 1; 
-  User user = 2;
+  string email = 2;
+  string bio = 3;
+  string username = 4;
 }
 
 message UpdateUserResponse {
