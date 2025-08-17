@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package user;
 
+import "google/protobuf/timestamp.proto";
 option go_package = "github.com/your-org/anime-protos/user;userpb";
 
 message User {
@@ -14,8 +15,8 @@ message User {
   repeated string favorite_genres = 7;
   int64 followers_count = 8;
   int64 following_count = 9;
-  string created_at = 10;
-  string updated_at = 11;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
 }
 
 service UserService {
