@@ -25,7 +25,6 @@ message RegisterRequest {
 message RegisterResponse {
   Token token = 1;
   int64 user_id = 2;
-  google.protobuf.Timestamp expires_at = 3;
 }
 
 message LoginRequest {
@@ -36,7 +35,6 @@ message LoginRequest {
 message LoginResponse {
   Token token = 1;
   int64 user_id = 2;
-  google.protobuf.Timestamp expires_at = 3;
 }
 
 message VerifyTokenRequest {
