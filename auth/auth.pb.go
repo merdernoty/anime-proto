@@ -138,6 +138,7 @@ type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         *Token                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -184,6 +185,13 @@ func (x *RegisterResponse) GetUserId() int64 {
 		return x.UserId
 	}
 	return 0
+}
+
+func (x *RegisterResponse) GetExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return nil
 }
 
 type LoginRequest struct {
@@ -242,6 +250,7 @@ type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         *Token                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -288,6 +297,13 @@ func (x *LoginResponse) GetUserId() int64 {
 		return x.UserId
 	}
 	return 0
+}
+
+func (x *LoginResponse) GetExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return nil
 }
 
 type VerifyTokenRequest struct {
@@ -338,6 +354,7 @@ type VerifyTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
 	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -386,6 +403,13 @@ func (x *VerifyTokenResponse) GetUserId() int64 {
 	return 0
 }
 
+func (x *VerifyTokenResponse) GetExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return nil
+}
+
 var File_auth_auth_proto protoreflect.FileDescriptor
 
 const file_auth_auth_proto_rawDesc = "" +
@@ -398,21 +422,27 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x0fRegisterRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\"N\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"\x89\x01\n" +
 	"\x10RegisterResponse\x12!\n" +
 	"\x05token\x18\x01 \x01(\v2\v.auth.TokenR\x05token\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x03R\x06userId\"@\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x129\n" +
+	"\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"K\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\x86\x01\n" +
 	"\rLoginResponse\x12!\n" +
 	"\x05token\x18\x01 \x01(\v2\v.auth.TokenR\x05token\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x03R\x06userId\"*\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x129\n" +
+	"\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"*\n" +
 	"\x12VerifyTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"D\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\x7f\n" +
 	"\x13VerifyTokenResponse\x12\x14\n" +
 	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x03R\x06userId2\xbe\x01\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x129\n" +
+	"\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt2\xbe\x01\n" +
 	"\vAuthService\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x12B\n" +
@@ -444,18 +474,21 @@ var file_auth_auth_proto_goTypes = []any{
 var file_auth_auth_proto_depIdxs = []int32{
 	7, // 0: auth.Token.expires_at:type_name -> google.protobuf.Timestamp
 	0, // 1: auth.RegisterResponse.token:type_name -> auth.Token
-	0, // 2: auth.LoginResponse.token:type_name -> auth.Token
-	1, // 3: auth.AuthService.Register:input_type -> auth.RegisterRequest
-	3, // 4: auth.AuthService.Login:input_type -> auth.LoginRequest
-	5, // 5: auth.AuthService.VerifyToken:input_type -> auth.VerifyTokenRequest
-	2, // 6: auth.AuthService.Register:output_type -> auth.RegisterResponse
-	4, // 7: auth.AuthService.Login:output_type -> auth.LoginResponse
-	6, // 8: auth.AuthService.VerifyToken:output_type -> auth.VerifyTokenResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	7, // 2: auth.RegisterResponse.expires_at:type_name -> google.protobuf.Timestamp
+	0, // 3: auth.LoginResponse.token:type_name -> auth.Token
+	7, // 4: auth.LoginResponse.expires_at:type_name -> google.protobuf.Timestamp
+	7, // 5: auth.VerifyTokenResponse.expires_at:type_name -> google.protobuf.Timestamp
+	1, // 6: auth.AuthService.Register:input_type -> auth.RegisterRequest
+	3, // 7: auth.AuthService.Login:input_type -> auth.LoginRequest
+	5, // 8: auth.AuthService.VerifyToken:input_type -> auth.VerifyTokenRequest
+	2, // 9: auth.AuthService.Register:output_type -> auth.RegisterResponse
+	4, // 10: auth.AuthService.Login:output_type -> auth.LoginResponse
+	6, // 11: auth.AuthService.VerifyToken:output_type -> auth.VerifyTokenResponse
+	9, // [9:12] is the sub-list for method output_type
+	6, // [6:9] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_auth_auth_proto_init() }
