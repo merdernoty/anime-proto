@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package anime;
+
+option go_package = "github.com/merdernoty/anime-search/proto;anime";
+
+service AnimeService {
+  rpc SearchAnime (SearchRequest) returns (SearchResponse);
+  rpc GetAnimeById (GetByIdRequest) returns (AnimeResponse);
+  rpc ListAnime (ListRequest) returns (SearchResponse);
+}
+
+message SearchRequest {
+  string query = 1;
+}
+
+message GetByIdRequest {
+  int32 id = 1;
+}
+
+message ListRequest {}
+
+message AnimeItem {
+  int32 id = 1;
+  string title = 2;
+  string synopsis = 3;
+}
+
+message SearchResponse {
+  repeated AnimeItem results = 1;
+}
+
+message AnimeResponse {
+  AnimeItem anime = 1;
+}
